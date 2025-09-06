@@ -6,8 +6,9 @@ const int ScreenHeight = 450;
 
 int main() {
   ballProperty ball;
+  ball
 
-  ball.x = 400;
+      ball.x = 400;
   ball.y = 400;
   ball.radius = 60.0f;
   ball.speed_x = 100.0f;
@@ -21,23 +22,15 @@ int main() {
 
     BeginDrawing();
 
+    // ball.x += ball.speed_x;
+
     if (IsKeyDown(KEY_A)) {
-      TraceLog(LOG_INFO, "A KEY WAS BEEN PRESSED");
-      ball.x -= 3;
-    } else if (IsKeyDown(KEY_D)) {
-      TraceLog(LOG_INFO, "D KEY HAS BEEN  PRESSED");
-      ball.x += 3;
-    } else if (IsKeyDown(KEY_W)) {
-      TraceLog(LOG_INFO, "W KEY HAS BEEN PRESSED");
-      ball.y -= 3;
-    } else if (IsKeyDown(KEY_S)) {
-      TraceLog(LOG_INFO, "S KEY HAS BEEN PRESSED");
-      ball.y += 3;
+      TraceLog(LOG_INFO, "W KEY WAS PRESSED");
     }
 
-    ClearBackground(BLACK);
+    DrawCircleV((Vector2)ball.defaultPosition, ball.radius, WHITE);
+
     EndDrawing();
-    DrawCircle(ball.x, ball.y, ball.radius, GREEN);
   }
   CloseWindow();
 
