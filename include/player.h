@@ -1,25 +1,17 @@
 #include "raylib.h"
 #include <stdbool.h>
 
-#define MOVEMENT_H
-#ifdef MOVEMENT_H
+#define PLAYER_H
+#ifdef PLAYER_H
 
-typedef struct ballProperty {
-  /* Position of the ball */
-  float position_x;
-  float position_y;
+typedef struct ball_object {
 
-  /* Size of Ball */
+  /* Ball Properties */
   float radius;
 
-  /* The speed of the ball */
-  float speed_x;
-  float speed_y;
-
+  Vector2 Position;
   Vector2 velocity;
 
-} ballProperty;
+} ball_object;
 
-void move_player();
-
-#endif // MOVEMENT_H
+#endif // PLAYER_H
