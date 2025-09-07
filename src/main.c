@@ -12,26 +12,37 @@ int main() {
   ball.radius = 40.0f;
 
   InitWindow(windowWidth, windowHeight, "raylib-ball");
-
-  if (IsKeyDown(KEY_A)) {
-    TraceLog(LOG_INFO, "KEY : A");
-    ball.Position.x -= 10.0f;
-  } else if (KEY_D) {
-    ball.Position.y += 10.0f;
-  }
-
+  SetTargetFPS(120);
   while (!WindowShouldClose()) {
 
+    float speed = 200.0f; // Pixels per second
+
+    // Get the time elapsed since the last frame
+    float dt = GetFrameTime();
+
+    // Check for key presses and move the ball
+    if (IsKeyDown(KEY_W)) {
+      ball.Position.y -= speed * dt;
+    }
+    if (IsKeyDown(KEY_S)) {
+      ball.Position.y += speed * dt;
+    }
+    if (IsKeyDown(KEY_A)) {
+      ball.Position.x -= speed * dt;
+    }
+    if (IsKeyDown(KEY_D)) {
+      ball.Position.x += speed * dt;
+    }
     BeginDrawing();
 
     ClearBackground(GRAY);
-    SetTargetFPS(60);
-    EndDrawing();
-    DrawFPS(0, 0);
 
+    EndDrawing();
+
+    DrawFPS(0, 0);
     DrawCircle(ball.Position.x, ball.Position.y, ball.radius, BLACK);
   }
-  CloseWindow();
 
+  CloseWindow();
   return (0);
 };
