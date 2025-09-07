@@ -1,18 +1,20 @@
-#include "../include/movement.h"
+#include "../include/player.h"
 #include "../include/raylib.h"
+#include <stdbool.h>
 
 const int screenWidth = 800;
 const int ScreenHeight = 450;
 
 int main() {
-  ballProperty ball;
 
-  ball.x = 400;
-  ball.y = 400;
+  ballProperty ball;
+  Rectangle myRectangle = {301.0f, 300.0f, 30.0f, 30.0f};
+
+  ball.position_x = (float)screenWidth / 2;
+  ball.position_y = (float)ScreenHeight / 2;
   ball.radius = 60.0f;
   ball.speed_x = 100.0f;
   ball.speed_y = 100.0f;
-  ball.defaultPosition = (Vector2){5, 55};
 
   InitWindow(screenWidth, ScreenHeight, "Raylib-game");
   SetTargetFPS(60);
@@ -21,23 +23,28 @@ int main() {
 
     BeginDrawing();
 
+    ball.velocity.x = 0.0;
+
     if (IsKeyDown(KEY_A)) {
       TraceLog(LOG_INFO, "A KEY WAS BEEN PRESSED");
-      ball.x -= 3;
+      ball.velocity.x -= 5;
     } else if (IsKeyDown(KEY_D)) {
       TraceLog(LOG_INFO, "D KEY HAS BEEN  PRESSED");
-      ball.x += 3;
+      ball.velocity.x -= 5;
     } else if (IsKeyDown(KEY_W)) {
       TraceLog(LOG_INFO, "W KEY HAS BEEN PRESSED");
-      ball.y -= 3;
+      ball.position_y -= 10;
     } else if (IsKeyDown(KEY_S)) {
       TraceLog(LOG_INFO, "S KEY HAS BEEN PRESSED");
-      ball.y += 3;
+      ball.position_y += 10;
     }
 
     ClearBackground(BLACK);
     EndDrawing();
-    DrawCircle(ball.x, ball.y, ball.radius, GREEN);
+    DrawFPS(0, 0);
+
+    DrawCircleV((Vector2){ball.position_x, ball.position_y}, ball.radius, RED);
+    DrawRectangleRec(myRectangle, PURPLE);
   }
   CloseWindow();
 
